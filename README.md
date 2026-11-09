@@ -3,6 +3,8 @@
 W3C DTCG design tokens for Faris Han Labs. Cross-platform: web (CSS vars),
 TypeScript constants, and (later) TUI/native mappings. Apache-2.0.
 
+![preview](demo/preview.png)
+
 ## Install
 
 ```bash

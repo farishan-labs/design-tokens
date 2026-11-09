@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>design-tokens preview</title>
+<link rel="stylesheet" href="../src/tokens/tokens.css" />
+<style>
+  body { font-family: system-ui; padding: 1.5rem; background: var(--ui-color-bg-default); color: var(--ui-color-fg-default); }
+  h1 { margin-bottom: 1rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: .75rem; }
+  .swatch { border: 1px solid var(--ui-color-border-default); border-radius: .5rem; overflow: hidden; }
+  .color { height: 60px; }
+  .label { padding: .5rem; font-size: .8rem; font-family: monospace; }
+</style>
+</head>
+<body>
+<h1>@farishan-labs/design-tokens</h1>
+<div class="grid" id="g"></div>
+<script>
+  const tokens = {
+    "color.bg.default":"#ffffff","color.bg.muted":"#f4f4f5","color.bg.inverse":"#09090b",
+    "color.fg.default":"#09090b","color.fg.muted":"#71717a","color.fg.inverse":"#fafafa",
+    "color.border.default":"#e4e4e7","color.border.strong":"#a1a1aa",
+    "color.accent.default":"#2563eb","color.accent.hover":"#1d4ed8","color.accent.fg":"#ffffff",
+    "color.danger.default":"#dc2626","color.danger.fg":"#ffffff",
+    "color.success.default":"#16a34a","color.success.fg":"#ffffff"
+  };
+  const g = document.getElementById("g");
+  for (const [name,val] of Object.entries(tokens)) {
+    const d = document.createElement("div"); d.className="swatch";
+    d.innerHTML = `<div class="color" style="background:${val}"></div><div class="label">${name}<br>${val}</div>`;
+    g.appendChild(d);
+  }
+</script>
+</body>
+</html>
