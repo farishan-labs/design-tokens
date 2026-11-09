@@ -95,6 +95,7 @@ const html = `<!DOCTYPE html>
 
 const outPath = resolve(ROOT, "dist", "preview.html");
 writeFileSync(outPath, html);
+writeFileSync(resolve(ROOT, "dist", "index.html"), html);
 console.log(`Preview written: ${outPath}`);
 
 try {
