@@ -38,3 +38,87 @@
   --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ui-color-bg-default: #09090b;
+    --ui-color-bg-muted: #18181b;
+    --ui-color-bg-inverse: #fafafa;
+    --ui-color-fg-default: #fafafa;
+    --ui-color-fg-muted: #a1a1aa;
+    --ui-color-fg-inverse: #09090b;
+    --ui-color-border-default: #27272a;
+    --ui-color-border-strong: #3f3f46;
+    --ui-color-accent-default: #3b82f6;
+    --ui-color-accent-hover: #2563eb;
+    --ui-color-accent-fg: #ffffff;
+    --ui-color-danger-default: #ef4444;
+    --ui-color-danger-fg: #ffffff;
+    --ui-color-success-default: #22c55e;
+    --ui-color-success-fg: #ffffff;
+    --ui-space-0: 0;
+    --ui-space-1: 0.25rem;
+    --ui-space-2: 0.5rem;
+    --ui-space-3: 0.75rem;
+    --ui-space-4: 1rem;
+    --ui-space-6: 1.5rem;
+    --ui-space-8: 2rem;
+    --ui-radius-sm: 0.25rem;
+    --ui-radius-md: 0.375rem;
+    --ui-radius-lg: 0.5rem;
+    --ui-radius-full: 9999px;
+    --ui-font-family-sans: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --ui-font-family-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+    --ui-font-size-xs: 0.75rem;
+    --ui-font-size-sm: 0.875rem;
+    --ui-font-size-md: 1rem;
+    --ui-font-size-lg: 1.125rem;
+    --ui-font-size-xl: 1.25rem;
+    --ui-motion-duration-fast: 100ms;
+    --ui-motion-duration-normal: 200ms;
+    --ui-motion-duration-slow: 300ms;
+    --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+}
+
+:root[data-theme="dark"] {
+  --ui-color-bg-default: #09090b;
+  --ui-color-bg-muted: #18181b;
+  --ui-color-bg-inverse: #fafafa;
+  --ui-color-fg-default: #fafafa;
+  --ui-color-fg-muted: #a1a1aa;
+  --ui-color-fg-inverse: #09090b;
+  --ui-color-border-default: #27272a;
+  --ui-color-border-strong: #3f3f46;
+  --ui-color-accent-default: #3b82f6;
+  --ui-color-accent-hover: #2563eb;
+  --ui-color-accent-fg: #ffffff;
+  --ui-color-danger-default: #ef4444;
+  --ui-color-danger-fg: #ffffff;
+  --ui-color-success-default: #22c55e;
+  --ui-color-success-fg: #ffffff;
+  --ui-space-0: 0;
+  --ui-space-1: 0.25rem;
+  --ui-space-2: 0.5rem;
+  --ui-space-3: 0.75rem;
+  --ui-space-4: 1rem;
+  --ui-space-6: 1.5rem;
+  --ui-space-8: 2rem;
+  --ui-radius-sm: 0.25rem;
+  --ui-radius-md: 0.375rem;
+  --ui-radius-lg: 0.5rem;
+  --ui-radius-full: 9999px;
+  --ui-font-family-sans: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --ui-font-family-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ui-font-size-xs: 0.75rem;
+  --ui-font-size-sm: 0.875rem;
+  --ui-font-size-md: 1rem;
+  --ui-font-size-lg: 1.125rem;
+  --ui-font-size-xl: 1.25rem;
+  --ui-motion-duration-fast: 100ms;
+  --ui-motion-duration-normal: 200ms;
+  --ui-motion-duration-slow: 300ms;
+  --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}

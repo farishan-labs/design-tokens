@@ -1,0 +1,125 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "color": {
+    "bg": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.035294, 0.035294, 0.043137],
+          "hex": "#09090b"
+        }
+      },
+      "muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.094118, 0.094118, 0.105882],
+          "hex": "#18181b"
+        }
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.980392, 0.980392, 0.980392],
+          "hex": "#fafafa"
+        }
+      }
+    },
+    "fg": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.980392, 0.980392, 0.980392],
+          "hex": "#fafafa"
+        }
+      },
+      "muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.631373, 0.631373, 0.666667],
+          "hex": "#a1a1aa"
+        }
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.035294, 0.035294, 0.043137],
+          "hex": "#09090b"
+        }
+      }
+    },
+    "border": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.152941, 0.152941, 0.164706],
+          "hex": "#27272a"
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.247059, 0.247059, 0.27451],
+          "hex": "#3f3f46"
+        }
+      }
+    },
+    "accent": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.231373, 0.509804, 0.964706],
+          "hex": "#3b82f6"
+        }
+      },
+      "hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.145098, 0.388235, 0.921569],
+          "hex": "#2563eb"
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [1.0, 1.0, 1.0], "hex": "#ffffff" }
+      }
+    },
+    "danger": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.937255, 0.266667, 0.266667],
+          "hex": "#ef4444"
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [1.0, 1.0, 1.0], "hex": "#ffffff" }
+      }
+    },
+    "success": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.133333, 0.772549, 0.368627],
+          "hex": "#22c55e"
+        }
+      },
+      "fg": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [1.0, 1.0, 1.0], "hex": "#ffffff" }
+      }
+    }
+  }
+}
