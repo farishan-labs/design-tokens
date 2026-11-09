@@ -21,6 +21,18 @@ import { tokens } from "@farishan-labs/design-tokens";
 <link rel="stylesheet" href="node_modules/@farishan-labs/design-tokens/src/tokens/tokens.css" />
 ```
 
+## Preview
+
+Render a local, offline swatch preview of any DTCG tokens file:
+
+```bash
+bun run preview                      # uses src/tokens/tokens.json
+bun run preview -- path/to/tokens.json
+```
+
+Writes `dist/preview.html` and opens it in the default browser. View-only
+(no editing). Reuse Engramma if an embedded editor is needed.
+
 ## Development
 
 ```bash
