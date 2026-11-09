@@ -11,9 +11,11 @@ function isToken(node: unknown): node is { $value: unknown } {
   return typeof node === "object" && node !== null && "$value" in (node as object);
 }
 
-function walk(node: TokenNode, path: string[], out: { path: string[]; value: unknown }[]): void {
+type Entry = { path: string[]; type: string; value: unknown };
+
+function walk(node: TokenNode, path: string[], out: Entry[]): void {
   if (isToken(node)) {
-    out.push({ path, value: node.$value });
+    out.push({ path, type: String((node as { $type?: string }).$type ?? ""), value: node.$value });
     return;
   }
   if (typeof node === "object" && node !== null) {
@@ -28,7 +30,76 @@ function cssVarName(path: string[]): string {
   return "--ui-" + path.join("-");
 }
 
-function buildNested(entries: { path: string[]; value: unknown }[]): unknown {
+function num(v: unknown): number {
+  return typeof v === "number" ? v : Number(v);
+}
+
+function colorToCss(v: unknown): string {
+  if (typeof v === "string") return v;
+  const o = v as Record<string, unknown>;
+  if (o.hex && typeof o.hex === "string") {
+    const alpha = typeof o.alpha === "number" ? o.alpha : 1;
+    if (alpha < 1) {
+      const comps = o.components as number[];
+      const [r, g, b] = comps.map((c) => Math.round(c * 255));
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+    return o.hex as string;
+  }
+  const comps = o.components as number[];
+  if (Array.isArray(comps)) {
+    const [r, g, b] = comps.map((c) => Math.round(c * 255));
+    const alpha = typeof o.alpha === "number" ? o.alpha : 1;
+    return alpha < 1 ? `rgba(${r}, ${g}, ${b}, ${alpha})` : `rgb(${r}, ${g}, ${b})`;
+  }
+  return String(v);
+}
+
+function dimToCss(v: unknown): string {
+  if (typeof v === "string") return v;
+  const o = v as Record<string, unknown>;
+  if (num(o.value) === 0) return "0";
+  return `${o.value}${o.unit}`;
+}
+
+function durationToCss(v: unknown): string {
+  if (typeof v === "string") return v;
+  const o = v as Record<string, unknown>;
+  return `${o.value}${o.unit}`;
+}
+
+function shadowToCss(v: unknown): string {
+  if (typeof v === "string") return v;
+  const o = v as Record<string, unknown>;
+  const color = colorToCss(o.color);
+  const ox = dimToCss(o.offsetX);
+  const oy = dimToCss(o.offsetY);
+  const blur = dimToCss(o.blur);
+  const spread = dimToCss(o.spread);
+  const inset = o.inset ? "inset " : "";
+  return `${inset}${ox} ${oy} ${blur} ${spread} ${color}`.trim();
+}
+
+function toCss(type: string, value: unknown): string {
+  switch (type) {
+    case "color":
+      return colorToCss(value);
+    case "dimension":
+      return dimToCss(value);
+    case "duration":
+      return durationToCss(value);
+    case "shadow":
+      return shadowToCss(value);
+    case "fontFamily":
+      return typeof value === "string" ? value : String(value);
+    default:
+      if (typeof value === "string") return value;
+      if (typeof value === "number" || typeof value === "boolean") return String(value);
+      return JSON.stringify(value);
+  }
+}
+
+function buildNested(entries: Entry[]): unknown {
   const root: Record<string, unknown> = {};
   for (const { path, value } of entries) {
     let cur: Record<string, unknown> = root;
@@ -43,13 +114,15 @@ function buildNested(entries: { path: string[]; value: unknown }[]): unknown {
 }
 
 const raw = JSON.parse(readFileSync(resolve(SRC_TOKENS, "tokens.json"), "utf8")) as TokenNode;
-const entries: { path: string[]; value: unknown }[] = [];
-walk(raw, [], entries);
+// strip $schema from nested output
+const { $schema: _schema, ...rest } = raw as Record<string, unknown>;
+const entries: Entry[] = [];
+walk(rest as TokenNode, [], entries);
 
 // CSS
 const cssLines: string[] = [":root {"];
-for (const { path, value } of entries) {
-  cssLines.push(`  ${cssVarName(path)}: ${value};`);
+for (const { path, type, value } of entries) {
+  cssLines.push(`  ${cssVarName(path)}: ${toCss(type, value)};`);
 }
 cssLines.push("}");
 cssLines.push("");

@@ -35,6 +35,6 @@
   --ui-motion-duration-fast: 100ms;
   --ui-motion-duration-normal: 200ms;
   --ui-motion-duration-slow: 300ms;
-  --ui-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --ui-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }

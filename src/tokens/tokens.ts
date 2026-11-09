@@ -4,47 +4,140 @@
 export const tokens = {
   color: {
     bg: {
-      default: "#ffffff",
-      muted: "#f4f4f5",
-      inverse: "#09090b",
+      default: {
+        colorSpace: "srgb",
+        components: [1, 1, 1],
+        hex: "#ffffff",
+      },
+      muted: {
+        colorSpace: "srgb",
+        components: [0.956863, 0.956863, 0.960784],
+        hex: "#f4f4f5",
+      },
+      inverse: {
+        colorSpace: "srgb",
+        components: [0.035294, 0.035294, 0.043137],
+        hex: "#09090b",
+      },
     },
     fg: {
-      default: "#09090b",
-      muted: "#71717a",
-      inverse: "#fafafa",
+      default: {
+        colorSpace: "srgb",
+        components: [0.035294, 0.035294, 0.043137],
+        hex: "#09090b",
+      },
+      muted: {
+        colorSpace: "srgb",
+        components: [0.443137, 0.443137, 0.478431],
+        hex: "#71717a",
+      },
+      inverse: {
+        colorSpace: "srgb",
+        components: [0.980392, 0.980392, 0.980392],
+        hex: "#fafafa",
+      },
     },
     border: {
-      default: "#e4e4e7",
-      strong: "#a1a1aa",
+      default: {
+        colorSpace: "srgb",
+        components: [0.894118, 0.894118, 0.905882],
+        hex: "#e4e4e7",
+      },
+      strong: {
+        colorSpace: "srgb",
+        components: [0.631373, 0.631373, 0.666667],
+        hex: "#a1a1aa",
+      },
     },
     accent: {
-      default: "#2563eb",
-      hover: "#1d4ed8",
-      fg: "#ffffff",
+      default: {
+        colorSpace: "srgb",
+        components: [0.145098, 0.388235, 0.921569],
+        hex: "#2563eb",
+      },
+      hover: {
+        colorSpace: "srgb",
+        components: [0.113725, 0.305882, 0.847059],
+        hex: "#1d4ed8",
+      },
+      fg: {
+        colorSpace: "srgb",
+        components: [1, 1, 1],
+        hex: "#ffffff",
+      },
     },
     danger: {
-      default: "#dc2626",
-      fg: "#ffffff",
+      default: {
+        colorSpace: "srgb",
+        components: [0.862745, 0.14902, 0.14902],
+        hex: "#dc2626",
+      },
+      fg: {
+        colorSpace: "srgb",
+        components: [1, 1, 1],
+        hex: "#ffffff",
+      },
     },
     success: {
-      default: "#16a34a",
-      fg: "#ffffff",
+      default: {
+        colorSpace: "srgb",
+        components: [0.086275, 0.639216, 0.290196],
+        hex: "#16a34a",
+      },
+      fg: {
+        colorSpace: "srgb",
+        components: [1, 1, 1],
+        hex: "#ffffff",
+      },
     },
   },
   space: {
-    "0": "0",
-    "1": "0.25rem",
-    "2": "0.5rem",
-    "3": "0.75rem",
-    "4": "1rem",
-    "6": "1.5rem",
-    "8": "2rem",
+    "0": {
+      value: 0,
+      unit: "px",
+    },
+    "1": {
+      value: 0.25,
+      unit: "rem",
+    },
+    "2": {
+      value: 0.5,
+      unit: "rem",
+    },
+    "3": {
+      value: 0.75,
+      unit: "rem",
+    },
+    "4": {
+      value: 1,
+      unit: "rem",
+    },
+    "6": {
+      value: 1.5,
+      unit: "rem",
+    },
+    "8": {
+      value: 2,
+      unit: "rem",
+    },
   },
   radius: {
-    sm: "0.25rem",
-    md: "0.375rem",
-    lg: "0.5rem",
-    full: "9999px",
+    sm: {
+      value: 0.25,
+      unit: "rem",
+    },
+    md: {
+      value: 0.375,
+      unit: "rem",
+    },
+    lg: {
+      value: 0.5,
+      unit: "rem",
+    },
+    full: {
+      value: 9999,
+      unit: "px",
+    },
   },
   font: {
     family: {
@@ -52,23 +145,95 @@ export const tokens = {
       mono: "ui-monospace, SFMono-Regular, Menlo, monospace",
     },
     size: {
-      xs: "0.75rem",
-      sm: "0.875rem",
-      md: "1rem",
-      lg: "1.125rem",
-      xl: "1.25rem",
+      xs: {
+        value: 0.75,
+        unit: "rem",
+      },
+      sm: {
+        value: 0.875,
+        unit: "rem",
+      },
+      md: {
+        value: 1,
+        unit: "rem",
+      },
+      lg: {
+        value: 1.125,
+        unit: "rem",
+      },
+      xl: {
+        value: 1.25,
+        unit: "rem",
+      },
     },
   },
   motion: {
     duration: {
-      fast: "100ms",
-      normal: "200ms",
-      slow: "300ms",
+      fast: {
+        value: 100,
+        unit: "ms",
+      },
+      normal: {
+        value: 200,
+        unit: "ms",
+      },
+      slow: {
+        value: 300,
+        unit: "ms",
+      },
     },
   },
   shadow: {
-    sm: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-    md: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+    sm: {
+      color: {
+        colorSpace: "srgb",
+        components: [0, 0, 0],
+        hex: "#000000",
+        alpha: 0.05,
+      },
+      offsetX: {
+        value: 0,
+        unit: "px",
+      },
+      offsetY: {
+        value: 1,
+        unit: "px",
+      },
+      blur: {
+        value: 2,
+        unit: "px",
+      },
+      spread: {
+        value: 0,
+        unit: "px",
+      },
+      inset: false,
+    },
+    md: {
+      color: {
+        colorSpace: "srgb",
+        components: [0, 0, 0],
+        hex: "#000000",
+        alpha: 0.1,
+      },
+      offsetX: {
+        value: 0,
+        unit: "px",
+      },
+      offsetY: {
+        value: 4,
+        unit: "px",
+      },
+      blur: {
+        value: 6,
+        unit: "px",
+      },
+      spread: {
+        value: -1,
+        unit: "px",
+      },
+      inset: false,
+    },
   },
 } as const;
 
