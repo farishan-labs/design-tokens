@@ -33,6 +33,17 @@ bun run preview -- path/to/tokens.json
 Writes `dist/preview.html` and opens it in the default browser. View-only
 (no editing). Reuse Engramma if an embedded editor is needed.
 
+## Validate
+
+Check DTCG compliance of a tokens file:
+
+```bash
+bun run validate                      # uses src/tokens/tokens.json
+bun run validate -- path/to/tokens.json
+```
+
+Exits non-zero on any validation error.
+
 ## Development
 
 ```bash
