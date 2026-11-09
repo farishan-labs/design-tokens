@@ -33,12 +33,19 @@ bun run preview -- path/to/tokens.json
 Writes `dist/preview.html` and opens it in the default browser. View-only
 (no editing). Reuse Engramma if an embedded editor is needed.
 
+## Multi-mode (light/dark)
+
+Tokens resolve per color scheme via the DTCG Resolver Module:
+`src/tokens/tokens.resolver.json` (modifier `theme`: light/dark).
+`gen:tokens` emits `:root` (light) plus dark overrides under
+`prefers-color-scheme: dark` and `[data-theme="dark"]`.
+
 ## Validate
 
-Check DTCG compliance of a tokens file:
+Check DTCG compliance of tokens + resolver:
 
 ```bash
-bun run validate                      # uses src/tokens/tokens.json
+bun run validate                      # tokens.json, tokens.dark.json, resolver
 bun run validate -- path/to/tokens.json
 ```
 
