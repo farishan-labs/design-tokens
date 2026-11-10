@@ -33,6 +33,14 @@ bun run preview -- path/to/tokens.json
 Writes `dist/preview.html` and opens it in the default browser. View-only
 (no editing). Reuse Engramma if an embedded editor is needed.
 
+## Token types
+
+All 13 W3C DTCG types are represented and generated to CSS/TS:
+
+`color`, `dimension`, `fontFamily`, `fontWeight`, `duration`, `cubicBezier`,
+`number`, `border`, `strokeStyle`, `transition`, `shadow`, `gradient`,
+`typography`.
+
 ## Multi-mode (light/dark)
 
 Tokens resolve per color scheme via the DTCG Resolver Module:
