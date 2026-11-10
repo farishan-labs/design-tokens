@@ -1,6 +1,13 @@
 import { mkdirSync, writeFileSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { parseResolver, resolveResolver, validate, validateResolver } from "@styleframe/dtcg";
+import {
+  applyInheritance,
+  parseResolver,
+  resolveAliases,
+  resolveResolver,
+  validate,
+  validateResolver,
+} from "@styleframe/dtcg";
 
 const ROOT = resolve(import.meta.dir, "..");
 const SRC_TOKENS = resolve(ROOT, "src/tokens");
@@ -33,6 +40,86 @@ function cssVarName(path: string[]): string {
 
 function num(v: unknown): number {
   return typeof v === "number" ? v : Number(v);
+}
+
+function fontFamilyToCss(v: unknown): string {
+  return Array.isArray(v) ? v.join(", ") : String(v);
+}
+
+function fontWeightToCss(v: unknown): string {
+  return String(v);
+}
+
+function cubicBezierToCss(v: unknown): string {
+  const arr = v as number[];
+  return `cubic-bezier(${arr.join(", ")})`;
+}
+
+function borderToCss(v: unknown): string {
+  const o = v as Record<string, unknown>;
+  const width = dimToCss(o.width);
+  const style = strokeStyleToCss(o.style);
+  const color = colorToCss(o.color);
+  return `${width} ${style} ${color}`.trim();
+}
+
+function strokeStyleToCss(v: unknown): string {
+  if (typeof v === "string") return v;
+  const o = v as Record<string, unknown>;
+  const dashes = Array.isArray(o.dashArray)
+    ? (o.dashArray as unknown[]).map(dimToCss).join(" ")
+    : "";
+  return dashes || "dashed";
+}
+
+function transitionToCss(v: unknown): string {
+  const o = v as Record<string, unknown>;
+  const duration = durationToCss(o.duration);
+  const timing = cubicBezierToCss(o.timingFunction);
+  const delay = o.delay ? durationToCss(o.delay) : "0ms";
+  return `${duration} ${timing} ${delay}`.trim();
+}
+
+function gradientToCss(v: unknown): string {
+  const stops = v as Array<Record<string, unknown>>;
+  const parts = stops.map((s) => {
+    const color = colorToCss(s.color);
+    const pos = typeof s.position === "number" ? ` ${Math.round(s.position * 100)}%` : "";
+    return `${color}${pos}`;
+  });
+  return `linear-gradient(${parts.join(", ")})`;
+}
+
+function typographyToCss(v: unknown): string {
+  const o = v as Record<string, unknown>;
+  const weight = o.fontWeight !== undefined ? fontWeightToCss(o.fontWeight) : "";
+  const size = dimToCss(o.fontSize);
+  const lineHeight =
+    o.lineHeight !== undefined
+      ? typeof o.lineHeight === "number"
+        ? String(o.lineHeight)
+        : dimToCss(o.lineHeight)
+      : "";
+  const family = fontFamilyToCss(o.fontFamily);
+  const lh = lineHeight ? `/${lineHeight}` : "";
+  return `${weight} ${size}${lh} ${family}`.trim();
+}
+
+function shadowToCssSingle(v: unknown): string {
+  const o = v as Record<string, unknown>;
+  const color = colorToCss(o.color);
+  const ox = dimToCss(o.offsetX);
+  const oy = dimToCss(o.offsetY);
+  const blur = dimToCss(o.blur);
+  const spread = dimToCss(o.spread);
+  const inset = o.inset ? "inset " : "";
+  return `${inset}${ox} ${oy} ${blur} ${spread} ${color}`.trim();
+}
+
+function shadowToCss(v: unknown): string {
+  if (typeof v === "string") return v;
+  if (Array.isArray(v)) return v.map(shadowToCssSingle).join(", ");
+  return shadowToCssSingle(v);
 }
 
 function colorToCss(v: unknown): string {
@@ -69,18 +156,6 @@ function durationToCss(v: unknown): string {
   return `${o.value}${o.unit}`;
 }
 
-function shadowToCss(v: unknown): string {
-  if (typeof v === "string") return v;
-  const o = v as Record<string, unknown>;
-  const color = colorToCss(o.color);
-  const ox = dimToCss(o.offsetX);
-  const oy = dimToCss(o.offsetY);
-  const blur = dimToCss(o.blur);
-  const spread = dimToCss(o.spread);
-  const inset = o.inset ? "inset " : "";
-  return `${inset}${ox} ${oy} ${blur} ${spread} ${color}`.trim();
-}
-
 function toCss(type: string, value: unknown): string {
   switch (type) {
     case "color":
@@ -92,7 +167,23 @@ function toCss(type: string, value: unknown): string {
     case "shadow":
       return shadowToCss(value);
     case "fontFamily":
-      return typeof value === "string" ? value : String(value);
+      return fontFamilyToCss(value);
+    case "fontWeight":
+      return fontWeightToCss(value);
+    case "cubicBezier":
+      return cubicBezierToCss(value);
+    case "number":
+      return String(value);
+    case "border":
+      return borderToCss(value);
+    case "strokeStyle":
+      return strokeStyleToCss(value);
+    case "transition":
+      return transitionToCss(value);
+    case "gradient":
+      return gradientToCss(value);
+    case "typography":
+      return typographyToCss(value);
     default:
       if (typeof value === "string") return value;
       if (typeof value === "number" || typeof value === "boolean") return String(value);
@@ -145,15 +236,18 @@ async function resolveMode(mode: "light" | "dark"): Promise<Entry[]> {
     return JSON.parse(readFileSync(p, "utf8"));
   };
   const resolved = await resolveResolver(resolver, { theme: mode }, loader);
+  // Apply type/deprecated inheritance and resolve aliases for full DTCG coverage.
+  const inherited = applyInheritance(resolved as any);
+  const aliased = resolveAliases(inherited as any, { strict: false });
   // validate resolved
-  const vErrors = validate(resolved);
+  const vErrors = validate(aliased as any);
   if (vErrors.length) {
     console.error(`Resolved (${mode}) validation errors:`);
     for (const e of vErrors)
       console.error(`  - ${e.path}: expected ${e.expected}, received ${e.received}`);
     process.exit(1);
   }
-  return entriesFromDoc(resolved);
+  return entriesFromDoc(aliased as any);
 }
 
 const lightEntries = await resolveMode("light");

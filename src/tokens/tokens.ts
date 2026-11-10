@@ -166,6 +166,12 @@ export const tokens = {
         unit: "rem",
       },
     },
+    weight: {
+      regular: 400,
+      medium: 500,
+      semibold: "semi-bold",
+      bold: 700,
+    },
   },
   motion: {
     duration: {
@@ -233,6 +239,106 @@ export const tokens = {
         unit: "px",
       },
       inset: false,
+    },
+  },
+  easing: {
+    standard: [0.4, 0, 0.2, 1],
+    decelerate: [0, 0, 0.2, 1],
+    accelerate: [0.4, 0, 1, 1],
+  },
+  opacity: {
+    disabled: 0.38,
+    hover: 0.08,
+  },
+  border: {
+    default: {
+      color: {
+        colorSpace: "srgb",
+        components: [0.894118, 0.894118, 0.905882],
+        hex: "#e4e4e7",
+      },
+      width: {
+        value: 1,
+        unit: "px",
+      },
+      style: "solid",
+    },
+    strong: {
+      color: {
+        colorSpace: "srgb",
+        components: [0.631373, 0.631373, 0.666667],
+        hex: "#a1a1aa",
+      },
+      width: {
+        value: 2,
+        unit: "px",
+      },
+      style: "solid",
+    },
+  },
+  strokeStyle: {
+    solid: "solid",
+    dashed: "dashed",
+    custom: {
+      dashArray: [
+        {
+          value: 4,
+          unit: "px",
+        },
+        {
+          value: 2,
+          unit: "px",
+        },
+      ],
+      lineCap: "round",
+    },
+  },
+  transition: {
+    fast: {
+      duration: {
+        value: 150,
+        unit: "ms",
+      },
+      timingFunction: [0.4, 0, 0.2, 1],
+      delay: {
+        value: 0,
+        unit: "ms",
+      },
+    },
+  },
+  gradient: {
+    brand: [
+      {
+        color: {
+          colorSpace: "srgb",
+          components: [0.145098, 0.388235, 0.921569],
+          hex: "#2563eb",
+        },
+        position: 0,
+      },
+      {
+        color: {
+          colorSpace: "srgb",
+          components: [0.113725, 0.305882, 0.847059],
+          hex: "#1d4ed8",
+        },
+        position: 1,
+      },
+    ],
+  },
+  typography: {
+    body: {
+      fontFamily: "ui-sans-serif, system-ui, -apple-system, sans-serif",
+      fontSize: {
+        value: 1,
+        unit: "rem",
+      },
+      fontWeight: 400,
+      lineHeight: 1.5,
+      letterSpacing: {
+        value: 0,
+        unit: "rem",
+      },
     },
   },
 } as const;

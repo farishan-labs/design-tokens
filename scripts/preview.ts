@@ -1,6 +1,12 @@
 import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { resolve, basename } from "node:path";
-import { parseResolver, resolveResolver, validate } from "@styleframe/dtcg";
+import {
+  applyInheritance,
+  parseResolver,
+  resolveAliases,
+  resolveResolver,
+  validate,
+} from "@styleframe/dtcg";
 
 const ROOT = resolve(import.meta.dir, "..");
 const SRC_TOKENS = resolve(ROOT, "src/tokens");
@@ -13,12 +19,14 @@ async function loadResolved(): Promise<{ raw: unknown; count: number }> {
   const resolver = parseResolver(resolverRaw);
   const loader = async (ref: string) => JSON.parse(readFileSync(resolve(SRC_TOKENS, ref), "utf8"));
   const resolved = await resolveResolver(resolver, { theme: "light" }, loader);
-  const vErrors = validate(resolved);
+  const inherited = applyInheritance(resolved as any);
+  const aliased = resolveAliases(inherited as any, { strict: false });
+  const vErrors = validate(aliased as any);
   if (vErrors.length) {
     console.error("Resolved validation errors:", vErrors.length);
     process.exit(1);
   }
-  return { raw: resolved, count: countTokens(resolved) };
+  return { raw: aliased, count: countTokens(aliased) };
 }
 
 function countTokens(n: unknown): number {
