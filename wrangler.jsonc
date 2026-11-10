@@ -2,12 +2,12 @@
   "name": "design-tokens",
   "compatibility_date": "2026-11-10",
   "assets": {
-    "directory": "dist"
+    "directory": "dist",
   },
   "routes": [
     {
       "pattern": "design-tokens.farishan.com",
-      "custom_domain": true
-    }
-  ]
+      "custom_domain": true,
+    },
+  ],
 }

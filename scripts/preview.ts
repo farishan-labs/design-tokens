@@ -1,10 +1,9 @@
 import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { resolve, basename } from "node:path";
-import { parse, parseResolver, resolveResolver, validate } from "@styleframe/dtcg";
+import { parseResolver, resolveResolver, validate } from "@styleframe/dtcg";
 
 const ROOT = resolve(import.meta.dir, "..");
 const SRC_TOKENS = resolve(ROOT, "src/tokens");
-const DEFAULT_TOKENS = resolve(SRC_TOKENS, "tokens.json");
 const CLIENT = resolve(ROOT, "scripts", "preview-client.js");
 
 const args = process.argv.slice(2);
