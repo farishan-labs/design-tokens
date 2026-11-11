@@ -49,5 +49,11 @@
   },
   "engines": {
     "bun": ">=1.0.0"
-  }
+  },
+  "keywords": [
+    "design",
+    "tokens",
+    "farishan",
+    "labs"
+  ]
 }

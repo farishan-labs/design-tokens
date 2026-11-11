@@ -1,5 +1,8 @@
 # @farishan-labs/design-tokens
 
+![License](https://img.shields.io/github/license/farishan-labs/design-tokens) ![Stars](https://img.shields.io/github/stars/farishan-labs/design-tokens)
+
+
 W3C DTCG design tokens for Faris Han Labs. Cross-platform: web (CSS vars),
 TypeScript constants, and (later) TUI/native mappings. GPL-3.0.
 
@@ -71,3 +74,9 @@ bun run gen:tokens
 ## Research basis
 
 `research/topics/farishan-labs-ui/` (P4 tokens as SSOT).
+
+## Installation
+
+```bash
+npm install design-tokens
+```
