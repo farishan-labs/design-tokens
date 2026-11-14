@@ -2,6 +2,14 @@
 
 ![License](https://img.shields.io/github/license/farishan-labs/design-tokens) ![Stars](https://img.shields.io/github/stars/farishan-labs/design-tokens)
 
+## Get the toolkit
+
+[![npm](https://img.shields.io/npm/v/@farishan-labs/design-tokens)](https://www.npmjs.com/package/@farishan-labs/design-tokens)
+[![npm downloads](https://img.shields.io/npm/dm/@farishan-labs/design-tokens)](https://www.npmjs.com/package/@farishan-labs/design-tokens)
+[![Gumroad](https://img.shields.io/badge/Gumroad-OpenCode%20Dev%20Toolkit-ff90e8)](https://farishan1.gumroad.com/l/sknrfm)
+
+Part of Faris Han Labs. Buy the OpenCode Dev Toolkit on Gumroad.
+
 
 W3C DTCG design tokens for Faris Han Labs. Cross-platform: web (CSS vars),
 TypeScript constants, and (later) TUI/native mappings. GPL-3.0.
