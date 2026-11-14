@@ -60,6 +60,8 @@ if (args[0]) {
 } else {
   checkTokens("tokens.json");
   checkTokens("tokens.dark.json");
+  checkTokens("tokens.mono.json");
+  checkTokens("tokens.mono.dark.json");
   checkResolver();
   process.exit(failed ? 1 : 0);
 }

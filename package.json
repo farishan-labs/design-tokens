@@ -2,6 +2,12 @@
   "name": "@farishan-labs/design-tokens",
   "version": "0.1.0",
   "description": "W3C DTCG design tokens for Faris Han Labs (web, TUI, native).",
+  "keywords": [
+    "design",
+    "farishan",
+    "labs",
+    "tokens"
+  ],
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -23,7 +29,8 @@
       "types": "./src/index.ts",
       "import": "./src/index.ts"
     },
-    "./tokens.css": "./src/tokens/tokens.css"
+    "./tokens.css": "./src/tokens/tokens.css",
+    "./tokens.mono.css": "./src/tokens/tokens.mono.css"
   },
   "publishConfig": {
     "access": "public"
@@ -49,11 +56,5 @@
   },
   "engines": {
     "bun": ">=1.0.0"
-  },
-  "keywords": [
-    "design",
-    "tokens",
-    "farishan",
-    "labs"
-  ]
+  }
 }

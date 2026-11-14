@@ -1,0 +1,21 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "name": "farishan-labs-design-tokens-mono",
+  "version": "2025.10",
+  "sets": {
+    "base": {
+      "sources": [{ "$ref": "tokens.json" }, { "$ref": "tokens.mono.json" }]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "description": "Color-scheme variant (light default, dark override).",
+      "contexts": {
+        "light": [{}],
+        "dark": [{ "$ref": "tokens.dark.json" }, { "$ref": "tokens.mono.dark.json" }]
+      },
+      "default": "light"
+    }
+  },
+  "resolutionOrder": [{ "$ref": "#/sets/base" }, { "$ref": "#/modifiers/theme" }]
+}
