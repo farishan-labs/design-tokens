@@ -88,3 +88,9 @@ bun run gen:tokens
 ```bash
 npm install design-tokens
 ```
+
+---
+
+## Support
+
+If this is useful, a star on GitHub helps. Paid tier (OpenCode Dev Toolkit) on Gumroad: https://farishan1.gumroad.com/l/sknrfm
