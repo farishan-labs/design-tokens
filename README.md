@@ -1,4 +1,9 @@
-# @farishan-labs/design-tokens
+# @farishan-labs/design-tokens (DEPRECATED — merged into @farishan-labs/ui)
+
+> Tokens have moved into `@farishan-labs/ui` (src/tokens). This repo is retained for
+> history; new consumers should depend on `@farishan-labs/ui`. Design-tokens-first:
+> tokens are the single source of truth; web components, React, and native desktop
+> (Ubuntu) are implementations.
 
 ![License](https://img.shields.io/github/license/farishan-labs/design-tokens) ![Stars](https://img.shields.io/github/stars/farishan-labs/design-tokens)
 
